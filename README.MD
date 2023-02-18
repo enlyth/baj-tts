@@ -27,7 +27,7 @@ https://soundcloud.com/enlyth/sets/bajtts-samples
 
 Download the pretrained models from huggingface:
 
-`https://huggingface.co/enlyth/baj-tts/tree/main`
+https://huggingface.co/enlyth/baj-tts/tree/main
 
 Make sure the `models` directory is in the same directory as the `bajtts.py` file, and includes the `config.json`.
 
