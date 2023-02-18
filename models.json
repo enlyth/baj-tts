@@ -1,0 +1,28 @@
+{
+    "voices": [
+        {
+            "name": "xqc",
+            "model": "xqc.pth"
+        },
+        {
+            "name": "juice-wrld",
+            "model": "juice-wrld.pth"
+        },
+        {
+            "name": "trump",
+            "model": "trump.pth"
+        },
+        {
+            "name": "forsen",
+            "model": "forsen.pth"
+        },
+        {
+            "name": "obiwan",
+            "model": "obiwan.pth"
+        },
+        {
+            "name": "david",
+            "model": "david.pth"
+        }
+    ]
+}
