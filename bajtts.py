@@ -1,17 +1,21 @@
 import os
 from TTS.utils.synthesizer import Synthesizer
 from tkinter import Button, Entry, Label, StringVar, Text, messagebox, IntVar, Checkbutton
+from pathlib import Path, PureWindowsPath
+from typing import Dict
 import tkinter as tk
 import time
 import pygame
 import json
+import torch
 
 pygame.mixer.init()
 
-base_model_path = ".\\models\\"
-config_path = base_model_path + "config.json"
+base_model_path = Path(PureWindowsPath(".\\models\\"))
+config_path = base_model_path / "config.json"
+output_path = Path(PureWindowsPath(".\\output\\"))
 sample_rate = 22050
-synthesizers: dict[str, Synthesizer] = {}
+synthesizers: Dict[str, Synthesizer] = {}
 voices = {}
 with open("models.json", "r") as f:
     models = json.load(f)
@@ -54,7 +58,7 @@ play_output_checkbox = Checkbutton(window, text="Play output", variable=play_out
 play_output_checkbox.pack()
 
 use_cuda_var = IntVar()
-use_cuda_var.set(1)
+use_cuda_var.set(torch.cuda.is_available())
 use_cuda_checkbox = Checkbutton(window, text="Use CUDA", variable=use_cuda_var)
 use_cuda_checkbox.pack()
 
@@ -63,7 +67,7 @@ output_label = Label(text="Output directory:")
 output_label.pack()
 
 output_input = Entry(window)
-output_input.insert(0, ".\\output\\")
+output_input.insert(0, output_path)
 output_input.pack()
 
 
@@ -74,7 +78,7 @@ def synthesize(text: str, voice: str, output_dir: str):
         messagebox.showerror("Error", "Output directory does not exist.")
         return
 
-    model_file = base_model_path + voices[voice]["model"]
+    model_file = base_model_path / voices[voice]["model"]
     if not os.path.exists(model_file):
         messagebox.showerror("Error", f"Model file {voices[voice]['model']} does not exist.")
         return
