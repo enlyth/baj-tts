@@ -31,6 +31,8 @@ https://huggingface.co/enlyth/baj-tts/tree/main
 
 Make sure the `models` directory is in the same directory as the `bajtts.py` file, and includes the `config.json`.
 
+Make sure to use python 3.9.
+
 You can use conda if you want, the only requirements are coqui-tts and pygame.
 
 ```bash
